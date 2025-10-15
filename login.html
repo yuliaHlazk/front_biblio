@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biblib | Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="form-page">
+    <h1>Login</h1>
+
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Username" autocomplete="username" required />
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <p id="login-status" style="margin-top:10px;"></p>
+
+    <p>Any account? <a href="register.html">Register</a></p>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="scripts/login-script.js"></script>
+
+  <script>
+    if (localStorage.getItem('access_token')) {
+      window.location.href = 'private.html';
+    }
+  </script>
+</body>
+</html>
