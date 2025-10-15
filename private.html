@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Biblib | Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Biblib | Profile</h1>
+    <div class="nav">
+      <button id="home-btn">Home</button>
+      <span id="username-label"></span>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="profile">
+      <h2>Welcome to your Biblib account!</h2>
+      <p><b>Username:</b> <span id="profile-username"></span></p>
+      <p><b>Email:</b> <span id="profile-email"></span></p>
+      <hr>
+    </section>
+
+    <section id="book-details" style="display:none;">
+      <h2>Book details</h2>
+      <div id="book-container"></div>
+    </section>
+
+    <section id="books" style="display:none;">
+      <h2>Available books</h2>
+      <button id="reload-books">Reload books</button>
+      <div id="books-container"></div>
+    </section>
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="scripts/private-script.js"></script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>📖 Book details </h1>
+    <div class="nav">
+      <button id="back-btn">Back</button>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="book-details">
+      <h2>Book information</h2>
+      <div id="book-container">Loading book details...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p> Yuliia Hlazkova </p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const API_BOOKS = "http://127.0.0.1:8000/api/books/";
+      const token = localStorage.getItem("access_token");
+      const params = new URLSearchParams(window.location.search);
+      const bookId = params.get("book");
+
+      if (!token) {
+        alert("Log in first");
+        window.location.href = "login.html";
+        return;
+      }
+
+      $("#back-btn").click(() => window.location.href = "private.html");
+      $("#logout-btn").click(() => {
+        localStorage.clear();
+        window.location.href = "index.html";
+      });
+
+      $.ajax({
+        url: `${API_BOOKS}${bookId}/`,
+        method: "GET",
+        headers: { Authorization: "Bearer " + token },
+        success: (book) => {
+          $("#book-container").html(`
+            <div class="book-card">
+              <h3>${book.title}</h3>
+              <p><b>Author:</b> ${book.author_name}</p>
+              <p><b>Publisher:</b> ${book.publisher_name}</p>
+              <p><b>Genre:</b> ${book.genre}</p>
+              <p><b>Price:</b> ${book.price} ₴</p>
+              <p><b>Description:</b></p>
+              <p>${book.description || "No description"}</p>
+            </div>
+          `);
+        },
+        error: () => $("#book-container").html("Failed to load book details")
+      });
+    });
+  </script>
+</body>
+</html>
